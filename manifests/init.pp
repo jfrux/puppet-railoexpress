@@ -11,16 +11,6 @@ class railoexpress(
 
   $railo_root       = $railoexpress::params::railo_root
 ) inherits railoexpress::params {
-  require railoexpress::railo
-  include railoexpress::rehash
-
-  if $::osfamily == 'Darwin' {
-    include boxen::config
-
-    file { "${boxen::config::envdir}/railoexpress.sh":
-      source => 'puppet:///modules/railoexpress/railoexpress.sh'
-    }
-  }
 
   archive { 'railoexpress':
     ensure => present,
